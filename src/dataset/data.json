@@ -1,0 +1,71 @@
+{
+  "schedule": [
+    {
+      "id": 1,
+      "bus_no": 765,
+      "type": "Teacher",
+      "shift": "First",
+      "start_place": "Campus",
+      "destination": "Station",
+      "start_time": "6.00 am"
+    },
+    {
+      "id": 2,
+      "bus_no": 123,
+      "type": "Student",
+      "shift": "Second",
+      "start_place": "Campus",
+      "destination": "Kaptai Rastar Matha",
+      "start_time": "2.00 pm"
+    },
+    {
+      "id": 3,
+      "bus_no": 165,
+      "type": "Student",
+      "shift": "Third",
+      "start_place": "Campus",
+      "destination": "Station",
+      "start_time": "5.05 pm"
+    },
+    {
+      "id": 4,
+      "bus_no": 234,
+      "type": "Office Staff",
+      "shift": "Third",
+      "start_place": "Station",
+      "destination": "Campus",
+      "start_time": "9.00 pm"
+    }
+  ],
+
+  "bus_info": [
+    {
+      "bus_no": 765,
+      "name": "Podda",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 165,
+      "name": "Jamuna",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 234,
+      "name": "Turag",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 123,
+      "name": "Ichamoti",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    }
+  ]
+}
