@@ -3,6 +3,7 @@
     {
       "id": 1,
       "bus_no": 765,
+      "day": "Sunday",
       "type": "Teacher",
       "shift": "First",
       "start_place": "Campus",
@@ -12,6 +13,7 @@
     {
       "id": 2,
       "bus_no": 123,
+      "day": "Sunday",
       "type": "Student",
       "shift": "Second",
       "start_place": "Campus",
@@ -21,6 +23,7 @@
     {
       "id": 3,
       "bus_no": 165,
+      "day": "Monday",
       "type": "Student",
       "shift": "Third",
       "start_place": "Campus",
@@ -30,6 +33,7 @@
     {
       "id": 4,
       "bus_no": 234,
+      "day": "Thursday",
       "type": "Office Staff",
       "shift": "Third",
       "start_place": "Station",

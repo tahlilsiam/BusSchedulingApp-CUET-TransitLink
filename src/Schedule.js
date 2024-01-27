@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
 import { ScrollView, Pressable, TouchableOpacity } from 'react-native';
 import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 import data from './dataset/data.json';
 
 const Schedule = ({ navigation }) => {
   const [schedule, setSchedule] = useState(data.schedule);
-  const [filterSchedule, setFilterSchedule] = useState(data.schedule);
+  const [filterSchedule, setFilterSchedule] = useState([]);
+  const [userType, setUserType] = useState();
+  const [weekDay, setWeekDay] = useState();
 
-  const onClick = (type) => {
+  const selectedDay = (day) => {
+    setWeekDay(day);
     const results = schedule.filter((bus) => {
-      return bus.type == type;
+      return bus.day == day && bus.type == userType;
     });
     setFilterSchedule(results);
   };
 
-  const onClickAll = () => {
-    setFilterSchedule(data.schedule);
+  const selectedType = (type) => {
+    setUserType(type);
+    const results = schedule.filter((bus) => {
+      return bus.type == type && bus.day == weekDay;
+    });
+    setFilterSchedule(results);
   };
 
   return (
@@ -26,7 +34,42 @@ const Schedule = ({ navigation }) => {
           <Text style={styles.title}>Bus Schedule</Text>
         </View>
 
-        <View style={styles.typesSection}>
+        <View style={styles.pickerSection}>
+          <Text style={styles.pickerText}>Select Day:</Text>
+          <View style={styles.pickerBox}>
+            <Picker
+              selectedValue={weekDay}
+              onValueChange={(itemValue, itemIndex) => selectedDay(itemValue)}
+              style={styles.picker}
+            >
+              <Picker.Item label="--- Select Day ---" value="day" />
+              <Picker.Item label="Sunday" value="Sunday" />
+              <Picker.Item label="Monday" value="Monday" />
+              <Picker.Item label="Tuesday" value="Tuesday" />
+              <Picker.Item label="Wednesday" value="Wednesday" />
+              <Picker.Item label="Thursday" value="Thursday" />
+              <Picker.Item label="Satarday" value="Satarday" />
+            </Picker>
+          </View>
+        </View>
+
+        <View style={styles.pickerSection}>
+          <Text style={styles.pickerText}>User Type:</Text>
+          <View style={styles.pickerBox}>
+            <Picker
+              selectedValue={userType}
+              onValueChange={(itemValue, itemIndex) => selectedType(itemValue)}
+              style={styles.picker}
+            >
+              <Picker.Item label="--- User Type ---" value="utype" />
+              <Picker.Item label="Teacher" value="Teacher" />
+              <Picker.Item label="Student" value="Student" />
+              <Picker.Item label="Office Staff" value="Office Staff" />
+            </Picker>
+          </View>
+        </View>
+
+        {/* <View style={styles.typesSection}>
           <Pressable onPress={onClickAll}>
             <Text style={styles.typesTextActive}>All</Text>
           </Pressable>
@@ -41,7 +84,7 @@ const Schedule = ({ navigation }) => {
           <Pressable onPress={() => onClick('Office Staff')}>
             <Text style={styles.typesTextActive}>Office Staff</Text>
           </Pressable>
-        </View>
+        </View> */}
 
         <View style={styles.listSection}>
           <Text style={styles.headText}>First Shift</Text>
@@ -176,18 +219,6 @@ const styles = StyleSheet.create({
     paddingRight: 35,
     paddingLeft: 35,
   },
-  headerSection: {
-    height: 70,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  menuIconStyle: {
-    width: 30,
-  },
-  faceIconStyle: {
-    width: 40,
-  },
 
   titleSection: {
     marginTop: 15,
@@ -195,6 +226,39 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: '600',
+  },
+
+  pickerSection: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  pickerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+
+  pickerBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'gray', // Border color
+    borderWidth: 1, // Border width
+    borderRadius: 5, // Border radius
+    color: 'black',
+    height: 25,
+    width: 200,
+  },
+
+  picker: {
+    height: 50,
+    borderColor: 'gray', // Border color
+    borderWidth: 1, // Border width
+    borderRadius: 5, // Border radius
+    color: 'black',
+    height: 30,
+    width: 200,
   },
 
   typesSection: {
