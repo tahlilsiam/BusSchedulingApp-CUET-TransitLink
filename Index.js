@@ -15,9 +15,7 @@ import {
 import User from './src/assets/user.png';
 import Schedule from './src/Schedule';
 import Notices from './src/Notices';
-import Comments from './src/Comments';
 import Profile from './src/Profile';
-import Settings from './src/Settings';
 
 const Drawer = createDrawerNavigator();
 
@@ -100,7 +98,7 @@ export default function Index() {
         name="Notices"
         options={{
           drawerLabel: 'Notices',
-          title: 'Notices',
+          title: 'Notice Board',
           drawerIcon: () => (
             <MaterialIcons
               name="notifications-none"
@@ -111,7 +109,7 @@ export default function Index() {
         }}
         component={Notices}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Comments"
         options={{
           drawerLabel: 'Commnents',
@@ -121,7 +119,7 @@ export default function Index() {
           ),
         }}
         component={Comments}
-      />
+      /> */}
 
       <Drawer.Screen
         name="Profile"
@@ -135,7 +133,7 @@ export default function Index() {
         component={Profile}
       />
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Settings"
         options={{
           drawerLabel: 'Settings',
@@ -145,7 +143,7 @@ export default function Index() {
           ),
         }}
         component={Settings}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 }
