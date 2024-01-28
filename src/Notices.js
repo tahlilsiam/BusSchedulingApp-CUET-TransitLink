@@ -29,7 +29,7 @@ const Notices = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
-        <Text style={styles.headingText}>CUET Transfort Section Notices</Text>
+        <Text style={styles.headingText}>CUET Transport Section Notices</Text>
       </View>
       <FlatList
         data={data.notices}
