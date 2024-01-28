@@ -6,7 +6,8 @@ import Index from './Index';
 import Home from './src/Home';
 import Signup from './src/Signup';
 import Login from './src/Login';
-import Details from './src/Details';
+import ScheduleDetails from './src/ScheduleDetails';
+import NoticeBody from './src/NoticeBody';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,8 @@ function App() {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Index" component={Index} />
-        <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="ScheduleDetails" component={ScheduleDetails} />
+        <Stack.Screen name="NoticeBody" component={NoticeBody} />
       </Stack.Navigator>
     </NavigationContainer>
   );
