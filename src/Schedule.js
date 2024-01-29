@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, Pressable, TouchableOpacity } from 'react-native';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import data from './dataset/data.json';
@@ -69,23 +69,6 @@ const Schedule = ({ navigation }) => {
           </View>
         </View>
 
-        {/* <View style={styles.typesSection}>
-          <Pressable onPress={onClickAll}>
-            <Text style={styles.typesTextActive}>All</Text>
-          </Pressable>
-          <Pressable onPress={() => onClick('Teacher')}>
-            <Text style={styles.typesTextActive}>Teacher</Text>
-          </Pressable>
-
-          <Pressable onPress={() => onClick('Student')}>
-            <Text style={styles.typesTextActive}>Student</Text>
-          </Pressable>
-
-          <Pressable onPress={() => onClick('Office Staff')}>
-            <Text style={styles.typesTextActive}>Office Staff</Text>
-          </Pressable>
-        </View> */}
-
         <View style={styles.listSection}>
           <Text style={styles.headText}>First Shift</Text>
 
@@ -98,7 +81,9 @@ const Schedule = ({ navigation }) => {
                     key={schedule.id}
                     activeOpacity={0.8}
                     onPress={() =>
-                      navigation.navigate('Details', { id: schedule.bus_no })
+                      navigation.navigate('ScheduleDetails', {
+                        id: schedule.bus_no,
+                      })
                     }
                   >
                     <View style={styles.infoArea}>
@@ -136,7 +121,9 @@ const Schedule = ({ navigation }) => {
                     key={schedule.id}
                     activeOpacity={0.8}
                     onPress={() =>
-                      navigation.navigate('Details', { id: schedule.bus_no })
+                      navigation.navigate('ScheduleDetails', {
+                        id: schedule.bus_no,
+                      })
                     }
                   >
                     <View style={styles.infoArea}>
@@ -174,7 +161,9 @@ const Schedule = ({ navigation }) => {
                     key={schedule.id}
                     activeOpacity={0.8}
                     onPress={() =>
-                      navigation.navigate('Details', { id: schedule.bus_no })
+                      navigation.navigate('ScheduleDetails', {
+                        id: schedule.bus_no,
+                      })
                     }
                   >
                     <View style={styles.infoArea}>
@@ -221,11 +210,15 @@ const styles = StyleSheet.create({
   },
 
   titleSection: {
-    marginTop: 15,
+    padding: 5,
+    marginVertical: 8,
+    marginHorizontal: 16,
   },
   title: {
+    padding: 5,
     fontSize: 32,
-    fontWeight: '600',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 
   pickerSection: {
