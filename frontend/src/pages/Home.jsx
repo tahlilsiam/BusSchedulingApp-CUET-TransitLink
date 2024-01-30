@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Spinner from '../components/spinner';
@@ -5,11 +6,12 @@ import {Link} from 'react-router-dom';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle}  from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import { useSnackbar } from 'notistack';
 
 const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const {enqueueSnackbar} = useSnackbar();
     useEffect(()=>{
         setLoading(true);
         axios
@@ -19,6 +21,7 @@ const Home = () => {
             setLoading(false);
         })
         .catch((error)=>{
+            enqueueSnackbar('Error', {variant:'error'});
             console.log(error);
             setLoading(false); 
         });
@@ -29,7 +32,7 @@ const Home = () => {
   return (
     <div className='p-4'>
         <div className='flex justify-between items-center'>
-            <h1 className='text-3xl my-8y text-center, mx-auto font-bold'>Book List</h1>
+            <h1 className='text-3xl my-8y text-center mx-auto font-bold'>Book List</h1>
             <Link to = '/books/create'>
                 <MdOutlineAddBox className='text-sky-800 text-4xl'/>
             </Link>
