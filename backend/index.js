@@ -1,8 +1,8 @@
 import express, { request, response } from "express";
 import mongoose from "mongoose";
 import { PORT, mongoURL} from "./config.js";
-import { Book } from "./models/bookModel.js";
-import  booksRoute  from "./routes/booksRoute.js"
+import { Bus } from "./models/busModel.js";
+import  busesRoute  from "./routes/busesRoute.js"
 import cors from 'cors';
 
 
@@ -28,12 +28,12 @@ app.use(cors());
 
 app.get('/', (request, response)=>{
     console.log(request);
-    return response.status(235).send("Welcome to MERN stack");
+    return response.status(234).send("Welcome to MERN stack");
 });
 
 
 //middleware to handle book model route
-app.use("/books", booksRoute);
+app.use("/buses", busesRoute);
 
 
 mongoose

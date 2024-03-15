@@ -1,2 +1,2 @@
 export const PORT = 5000;
-export const mongoURL = 'mongodb+srv://karnis:KBKtoR8bGhssGpkt@cluster0.tx0xgd0.mongodb.net/?retryWrites=true&w=majority';
+export const mongoURL = "mongodb+srv://root:SvQiub6XD7mUOQj5@cluster0.s6arvtr.mongodb.net/";
