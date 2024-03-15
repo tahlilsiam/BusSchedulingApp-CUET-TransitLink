@@ -1,49 +1,22 @@
-import express, { request, response } from "express";
-import mongoose from "mongoose";
-import { PORT, mongoURL} from "./config.js";
-import { Bus } from "./models/busModel.js";
-import  busesRoute  from "./routes/busesRoute.js"
-import cors from 'cors';
-
+require("./databse"); // Correct the typo in your existing require statement
+const express = require("express");
+require("dotenv").config();
+const postRoute = require("./router/post");
+const getRoute = require("./router/get"); // Add the new route
+const morgan = require("morgan");
 
 const app = express();
-
-// Middleware for parsing body
 app.use(express.json());
+app.use(morgan("dev"));
+app.use("/api/post", postRoute);
+app.use("/api/get", getRoute); // Use the new route for GET requests
 
-// Middleware for handling CORS POLICY
-//Option 1: Allow all origins with defauls cors
-app.use(cors());
+const PORT = process.env.PORT;
 
-//option 2: Allow custom origin 
-// app.use(
-//   cors({
-//     origin:'http://localhost:3000',
-//     method:['POST', 'GET', 'PUT', 'DELETE'],
-//     allowhead: ['Content-Type'],
-//   })
-// );
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 
-
-
-app.get('/', (request, response)=>{
-    console.log(request);
-    return response.status(234).send("Welcome to MERN stack");
+app.listen(PORT, () => {
+  console.log("Server is listening at http://localhost:" + PORT);
 });
-
-
-//middleware to handle book model route
-app.use("/buses", busesRoute);
-
-
-mongoose
-  .connect(mongoURL)
-  .then(() => {
-    console.log('App connected to database');
-    app.listen(PORT, () => {
-      console.log(`App is listening to port: ${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
