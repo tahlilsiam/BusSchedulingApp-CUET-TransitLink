@@ -1,0 +1,98 @@
+{
+  "schedule": [
+    {
+      "id": 1,
+      "bus_no": 765,
+      "day": "Sunday",
+      "type": "Teacher",
+      "shift": "First",
+      "start_place": "Campus",
+      "destination": "Station",
+      "start_time": "6.00 am"
+    },
+    {
+      "id": 2,
+      "bus_no": 123,
+      "day": "Sunday",
+      "type": "Student",
+      "shift": "Second",
+      "start_place": "Campus",
+      "destination": "Kaptai Rastar Matha",
+      "start_time": "2.00 pm"
+    },
+    {
+      "id": 3,
+      "bus_no": 165,
+      "day": "Monday",
+      "type": "Student",
+      "shift": "Third",
+      "start_place": "Campus",
+      "destination": "Station",
+      "start_time": "5.05 pm"
+    },
+    {
+      "id": 4,
+      "bus_no": 234,
+      "day": "Thursday",
+      "type": "Office Staff",
+      "shift": "Third",
+      "start_place": "Station",
+      "destination": "Campus",
+      "start_time": "9.00 pm"
+    }
+  ],
+
+  "bus_info": [
+    {
+      "bus_no": 765,
+      "name": "Podda",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 165,
+      "name": "Jamuna",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 234,
+      "name": "Turag",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    },
+    {
+      "bus_no": 123,
+      "name": "Ichamoti",
+      "driver_name": "Rahim",
+      "helper_name": "Karim",
+      "driver_phone_number": "01755555555"
+    }
+  ],
+
+  "notices": [
+    {
+      "id": "1",
+      "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos ullam soluta quasi voluptates, neque perferendis vero saepe libero, dolorem eum quae quibusdam, cupiditate laborum debitis voluptatibus? Unde enim minima dolor voluptate, cupiditate iusto magni in non obcaecati quasi animi dicta sapiente voluptatibus velit repudiandae quos beatae dolorum harum doloribus dolores dignissimos impedit reiciendis praesentium quam? Dolorem voluptatem accusamus quis enim praesentium mollitia aliquid iste corrupti ipsum commodi impedit, reprehenderit dicta natus harum, est dolore voluptatibus voluptates explicabo culpa optio et distinctio. Vero veniam magnam corrupti ullam accusamus iste rem, dolores tempore earum recusandae cum nobis suscipit consectetur doloribus sint laboriosam."
+    },
+    {
+      "id": "2",
+      "title": "Notice two",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos ullam soluta quasi voluptates, neque perferendis vero saepe libero, dolorem eum quae quibusdam, cupiditate laborum debitis voluptatibus? Unde enim minima dolor voluptate, cupiditate iusto magni in non obcaecati quasi animi dicta sapiente voluptatibus velit repudiandae quos beatae dolorum harum doloribus dolores dignissimos impedit reiciendis praesentium quam?"
+    },
+    {
+      "id": "3",
+      "title": "Lorem ipsum dolor sit amet",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos ullam soluta quasi voluptates, neque perferendis vero saepe libero, dolorem eum quae quibusdam, cupiditate laborum debitis voluptatibus?"
+    },
+    {
+      "id": "4",
+      "title": "নোটিশ চার",
+      "description": "আগামিকাল স্টুডেন্টদের জন্য বিকেলে ৭ টি বাস দেওয়া হবে।"
+    }
+  ]
+}
