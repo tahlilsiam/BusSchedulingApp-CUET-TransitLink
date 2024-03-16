@@ -8,7 +8,6 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import firebase from "../database/firebase";
 
 export default class Signup extends Component {
   constructor() {

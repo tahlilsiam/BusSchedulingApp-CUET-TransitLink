@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Index from './Index';
-import Home from './src/Home';
-import Signup from './src/Signup';
-import Login from './src/Login';
-import ScheduleDetails from './src/ScheduleDetails';
-import NoticeBody from './src/NoticeBody';
+import Index from "./Index";
+import Home from "./src/Home";
+import Signup from "./src/Signup";
+import Login from "./src/Login";
+import ScheduleDetails from "./src/ScheduleDetails";
+import NoticeBody from "./src/NoticeBody";
 
 const Stack = createNativeStackNavigator();
 
