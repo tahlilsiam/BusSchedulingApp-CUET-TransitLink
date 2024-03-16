@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 /* eslint-disable no-unused-vars */
 import BackButton from '../components/BackButton';
@@ -8,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import TripInputFields from './TripInputFields';
 
-const InputField = ({   }) => (
+const InputField = ({label, value, onChange, placeholder }) => (
   <div className='my-4'>
     <label className='text-xl mr-4 text-gray-500'>{label}</label>
     <input
@@ -145,7 +146,7 @@ const EditBus = () => {
         <TripInputFields day="Thu" tripType="3" busData={busData} handleInputChange={handleInputChange} />
 
         <button className='p-2 bg-sky-300 m-8' onClick={handleEditBus}>
-          Edit Bus
+          Save Edit
         </button>
       </div>
     </div>
