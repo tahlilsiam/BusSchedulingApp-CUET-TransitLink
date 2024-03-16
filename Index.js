@@ -1,21 +1,21 @@
-import 'react-native-gesture-handler';
-import { View, Text, Image, Pressable } from 'react-native';
+import "react-native-gesture-handler";
+import { View, Text, Image, Pressable } from "react-native";
 import {
   SimpleLineIcons,
   MaterialIcons,
   MaterialCommunityIcons,
   FontAwesome,
-} from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+} from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   DrawerItemList,
   createDrawerNavigator,
   DrawerItem,
-} from '@react-navigation/drawer';
-import User from './src/assets/user.png';
-import Schedule from './src/Schedule';
-import Notices from './src/Notices';
-import Profile from './src/Profile';
+} from "@react-navigation/drawer";
+import User from "./src/assets/user.png";
+import Schedule from "./src/Schedule";
+import Notices from "./src/Notices";
+import Profile from "./src/Profile";
 
 const Drawer = createDrawerNavigator();
 
@@ -28,10 +28,10 @@ export default function Index() {
             <View
               style={{
                 height: 200,
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderBottomColor: '#f4f4f4',
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                borderBottomColor: "#f4f4f4",
                 borderBottomWidth: 1,
               }}
             >
@@ -47,8 +47,8 @@ export default function Index() {
                 style={{
                   fontSize: 22,
                   marginVertical: 6,
-                  fontWeight: 'bold',
-                  color: '#111',
+                  fontWeight: "bold",
+                  color: "#111",
                 }}
               >
                 Estiak Sazid
@@ -56,7 +56,7 @@ export default function Index() {
               <Text
                 style={{
                   fontSize: 16,
-                  color: '#111',
+                  color: "#111",
                 }}
               >
                 Student
@@ -68,26 +68,26 @@ export default function Index() {
       }}
       screenOptions={{
         drawerStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: "#fff",
           width: 250,
         },
         headerStyle: {
-          backgroundColor: '#f4511e',
+          backgroundColor: "#f4511e",
         },
-        headerTintColor: '#fff',
+        headerTintColor: "#fff",
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
         drawerLabelStyle: {
-          color: '#111',
+          color: "#111",
         },
       }}
     >
       <Drawer.Screen
         name="Schedule"
         options={{
-          drawerLabel: 'Schedule',
-          title: 'Schedule',
+          drawerLabel: "Schedule",
+          title: "Schedule",
           drawerIcon: () => (
             <MaterialIcons name="schedule" size={20} color="#808080" />
           ),
@@ -97,8 +97,8 @@ export default function Index() {
       <Drawer.Screen
         name="Notices"
         options={{
-          drawerLabel: 'Notices',
-          title: 'Notice Board',
+          drawerLabel: "Notices",
+          title: "Notice Board",
           drawerIcon: () => (
             <MaterialIcons
               name="notifications-none"
@@ -120,19 +120,17 @@ export default function Index() {
         }}
         component={Comments}
       /> */}
-
       <Drawer.Screen
         name="Profile"
         options={{
-          drawerLabel: 'Profile',
-          title: 'Profile',
+          drawerLabel: "Profile",
+          title: "Profile",
           drawerIcon: () => (
             <FontAwesome name="user-circle-o" size={20} color="#808080" />
           ),
         }}
         component={Profile}
       />
-
       {/* <Drawer.Screen
         name="Settings"
         options={{

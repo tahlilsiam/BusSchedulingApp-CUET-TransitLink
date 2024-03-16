@@ -7,7 +7,7 @@ router.post("/", async (request, response) => {
   try {
     if (
       !request.body.staffName ||
-      !request.body.busNumber||
+      !request.body.busNumber ||
       !request.body.busName
     ) {
       return response.status(400).send({
@@ -16,35 +16,33 @@ router.post("/", async (request, response) => {
     }
     const newBus = {
       staffName: {
-        driverName:request.body.staffName.driverName,
-        helperName:request.body.staffName.helperName
+        driverName: request.body.staffName.driverName,
+        helperName: request.body.staffName.helperName,
       },
       busNumber: request.body.busNumber,
       busName: request.body.busName,
-    
     };
-    const days = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
-    days.forEach(day => {
-        for (let i = 1; i <= 3; i++) {
-            const tripFieldName = `trip${day}${i}`;
-            const requestBodyField = request.body[tripFieldName];
-            if (requestBodyField) {
-                newBus[tripFieldName] = {
-                    tripType: requestBodyField.tripType,
-                    startTime: requestBodyField.startTime,
-                    endTime: requestBodyField.endTime
-                };
-            } else {
-                newBus[tripFieldName] = {
-                    tripType: undefined,
-                    startTime: undefined,
-                    endTime: undefined
-                };
-            }
+    const days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+    days.forEach((day) => {
+      for (let i = 1; i <= 3; i++) {
+        const tripFieldName = `trip${day}${i}`;
+        const requestBodyField = request.body[tripFieldName];
+        if (requestBodyField) {
+          newBus[tripFieldName] = {
+            tripType: requestBodyField.tripType,
+            startTime: requestBodyField.startTime,
+            endTime: requestBodyField.endTime,
+          };
+        } else {
+          newBus[tripFieldName] = {
+            tripType: undefined,
+            startTime: undefined,
+            endTime: undefined,
+          };
         }
+      }
     });
 
-    
     const bus = await Bus.create(newBus);
     return response.status(200).send(bus);
   } catch (error) {
@@ -86,7 +84,7 @@ router.put("/:id", async (request, response) => {
   try {
     if (
       !request.body.staffName ||
-      !request.body.busNumber||
+      !request.body.busNumber ||
       !request.body.busName
     ) {
       return response.status(400).send({
@@ -98,11 +96,13 @@ router.put("/:id", async (request, response) => {
     if (!result) {
       return response.status(400).send({ message: "Bus Schedule not found" });
     }
-    return response.status(200).send({ message: "Bus Schedule updated successfully" });
-    } catch (error) {
-      console.log(error.message);
-      return response.status(500).send({ message: error.message });
-    }
+    return response
+      .status(200)
+      .send({ message: "Bus Schedule updated successfully" });
+  } catch (error) {
+    console.log(error.message);
+    return response.status(500).send({ message: error.message });
+  }
 });
 
 //Delete a bus from database
@@ -113,7 +113,9 @@ router.delete("/:id", async (request, response) => {
     if (!result) {
       return response.status(400).send({ message: "Bus is not found" });
     }
-    return response.status(200).send({ message: "Bus Schedule deleted successfully" });
+    return response
+      .status(200)
+      .send({ message: "Bus Schedule deleted successfully" });
   } catch (error) {
     console.log(error.message);
     return response.status(500).send({ message: error.message });
