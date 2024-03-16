@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
@@ -6,6 +7,7 @@ import {Link} from 'react-router-dom';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle}  from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import { IoColorFilter } from "react-icons/io5";
 import { useSnackbar } from 'notistack';
 
 const Home = () => {
@@ -41,6 +43,10 @@ const Home = () => {
             <Link to = '/buses/create'>
                     <MdOutlineAddBox className='text-sky-800 text-4xl'/>
                     <h4>Add Bus</h4>
+            </Link>
+            <Link to = '/buses/filter'>
+                    <IoColorFilter className='text-sky-800 text-4xl'/>
+                    <h4>Filter Bus</h4>
             </Link>
         </div>
         {

@@ -6,6 +6,7 @@ import CreateBus from './pages/CreateBus';
 import ShowBus from './pages/ShowBus';
 import EditBus from './pages/EditBus';
 import DeleteBus from './pages/DeleteBus';
+import FilterData from './pages/FilterData';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path='/buses/details/:id' element={<ShowBus/>} />
       <Route path='/buses/edit/:id' element={<EditBus/>} />
       <Route path='/buses/delete/:id' element={<DeleteBus/>} />
+      <Route path='/buses/filter' element = {<FilterData/>}/>
     </Routes>
   );
 };
