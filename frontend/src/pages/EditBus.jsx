@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import BackButton from '../components/BackButton';
 import Spinner from '../components/spinner';
@@ -144,7 +145,7 @@ const EditBus = () => {
         <TripInputFields day="Thu" tripType="3" busData={busData} handleInputChange={handleInputChange} />
 
         <button className='p-2 bg-sky-300 m-8' onClick={handleEditBus}>
-          Edit Bus
+          Save Edit Bus
         </button>
       </div>
     </div>
