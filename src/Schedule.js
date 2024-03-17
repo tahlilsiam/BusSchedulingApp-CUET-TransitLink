@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import BusCard from "./BusCard";
 
 const Schedule = () => {
   const [busData, setBusData] = useState([]);
+  const [selectedTripType, setSelectedTripType] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [days, setDays] = useState([
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ]);
 
   useEffect(() => {
     fetchData();
@@ -20,97 +33,87 @@ const Schedule = () => {
     }
   };
 
-  const renderBusCards = (busData) => {
-    const tripKeys = Object.keys(busData).filter((key) =>
-      key.startsWith("trip")
-    );
-    const tripDetailsArray = [];
+  const renderBusCards = () => {
+    let filteredBusData = busData;
 
-    tripKeys.forEach((tripKey) => {
-      const tripDetails = busData[tripKey];
-      if (
-        tripDetails.tripType &&
-        tripDetails.startTime &&
-        tripDetails.endTime
-      ) {
-        const [day, trip] = tripKey
-          .replace("trip", "")
-          .match(/([A-Za-z]+)([0-9]+)/)
-          .slice(1);
-        tripDetailsArray.push({
-          day: day.charAt(0).toUpperCase() + day.slice(1),
-          trip: `${trip}`,
-          details: tripDetails,
-        });
-      }
-    });
+    if (selectedTripType) {
+      filteredBusData = filteredBusData.filter((bus) => {
+        for (let key in bus) {
+          if (
+            key.startsWith("trip") &&
+            bus[key].tripType.toLowerCase() === selectedTripType
+          ) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
 
-    return tripDetailsArray.map(({ day, trip, details }, index) => (
-      <BusCard
-        key={index}
-        busData={busData}
-        tripDetails={details}
-        day={day}
-        trip={trip}
-      />
+    if (selectedDay) {
+      filteredBusData = filteredBusData.filter((bus) => {
+        return (
+          bus[`trip${selectedDay.toLowerCase()}1`].tripType.toLowerCase() !== ""
+        );
+      });
+    }
+
+    return filteredBusData.map((bus, index) => (
+      <BusCard key={index} bus={bus} />
     ));
-  };
-
-  const BusCard = ({ busData, tripDetails, day, trip }) => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{busData.busName}</Text>
-        <Text>Bus Number: {busData.busNumber}</Text>
-        <Text>Driver Name: {busData.staffName.driverName}</Text>
-        <Text>Helper Name: {busData.staffName.helperName}</Text>
-
-        <Text style={styles.title}>
-          Trip Details for {day} - {trip} Trip
-        </Text>
-        <Text>Trip Type: {tripDetails.tripType}</Text>
-        <Text>Start Time: {tripDetails.startTime}</Text>
-        <Text>End Time: {tripDetails.endTime}</Text>
-      </View>
-    );
   };
 
   return (
     <ScrollView style={styles.scrollView}>
-      {busData.map((bus, index) => (
-        <View key={index}>{renderBusCards(bus)}</View>
-      ))}
+      <Text style={styles.heading}>Schedule of Buses</Text>
+
+      <Picker
+        selectedValue={selectedTripType}
+        style={styles.picker}
+        onValueChange={(itemValue, itemIndex) => setSelectedTripType(itemValue)}
+      >
+        <Picker.Item label="Select Trip Type" value={null} />
+        <Picker.Item label="Teacher" value="teacher" />
+        <Picker.Item label="Student" value="student" />
+        <Picker.Item label="Staff" value="staff" />
+      </Picker>
+
+      <Picker
+        selectedValue={selectedDay}
+        style={styles.picker}
+        onValueChange={(itemValue, itemIndex) => setSelectedDay(itemValue)}
+      >
+        <Picker.Item label="Select Day" value={null} />
+        {days.map((day, index) => (
+          <Picker.Item key={index} label={day} value={day} />
+        ))}
+      </Picker>
+
+      {renderBusCards()}
     </ScrollView>
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     padding: 10,
   },
-  container: {
-    marginBottom: 20,
-    padding: 10,
-    backgroundColor: "#FAFAD2",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-    elevation: 5,
-  },
-  title: {
-    fontSize: 18,
+  heading: {
+    fontSize: 16,
     fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  busTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 20,
     marginBottom: 10,
+    textAlign: "center",
   },
-};
+  picker: {
+    marginBottom: 20,
+    height: 50,
+    width: "100%",
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#ccc",
+  },
+});
 
 export default Schedule;
