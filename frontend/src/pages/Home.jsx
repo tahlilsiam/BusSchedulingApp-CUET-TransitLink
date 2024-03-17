@@ -40,14 +40,19 @@ const Home = () => {
                         Roster Duty(Driver and Helper) for the month March
                     </h3>  
             </div>
-            <Link to = '/buses/create'>
+            <Link to = '/buses/create' className='flex flex-row text-sky-800'>
                     <MdOutlineAddBox className='text-sky-800 text-4xl'/>
-                    <h4>Add Bus</h4>
+                    <h5>Add Bus</h5>
             </Link>
+            <span className='flex flex-row my-4 text-sky-800 underline hover:text-darkblue hover:cursor-pointer'>
             <Link to = '/buses/filter'>
-                    <IoColorFilter className='text-sky-800 text-4xl'/>
-                    <h4>Filter Bus</h4>
+                    {/* <IoColorFilter className='text-sky-800 text-4xl'/> */}
+                    <h5> FIlTER BUS</h5>
             </Link>
+            <Link to = '/notices' className='ml-10'>
+                <h5>NOTICE BOARD</h5>
+            </Link>
+            </span>
         </div>
         {
             loading?(

@@ -13,7 +13,7 @@ const DeleteBus = () => {
   const {enqueueSnackbar} = useSnackbar();
 
 
-  const  handleDeleteBook = ()=>{
+  const  handleDeleteBus = ()=>{
     setLoading(true);
     axios
     .delete(`http://localhost:5000/buses/${id}`)
@@ -42,7 +42,7 @@ const DeleteBus = () => {
           <div 
           className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'>
           <h3 className='text-2xl'>Are you sure you want to delete the Bus?</h3>
-          <button className='p-4 bg-red-500 text-white m-8 w-full' onClick={handleDeleteBook}>
+          <button className='p-4 bg-red-500 text-white m-8 w-full' onClick={handleDeleteBus}>
             Yes, Delete
           </button>
 

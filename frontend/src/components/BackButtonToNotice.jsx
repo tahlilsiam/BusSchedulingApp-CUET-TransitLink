@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BsArrowLeft } from 'react-icons/bs'
 
-const BackButton = ({destination='/'}) => {
+const BackButton = ({destination='/notices'}) => {
   return (
     <div className='flex'>
        <Link 

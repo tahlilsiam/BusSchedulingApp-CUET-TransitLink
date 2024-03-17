@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { PORT, mongoURL } from "./config.js";
 import { Bus } from "./models/busModel.js";
 import busesRoute from "./routes/busesRoute.js";
+import noticesRoute from "./routes/noticesRoute.js"
 import cors from "cors";
 
 const app = express();
@@ -30,6 +31,7 @@ app.get("/", (request, response) => {
 
 //middleware to handle book model route
 app.use("/buses", busesRoute);
+app.use("/notices", noticesRoute);
 
 mongoose
   .connect(mongoURL)
