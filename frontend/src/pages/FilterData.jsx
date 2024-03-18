@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import BackButton from '../components/BackButton';
-import Spinner from '../components/spinner';
-import axios from 'axios';
-import { useSnackbar } from 'notistack';
-import FilterForm from './FilterForm'; 
+import React, { useState, useEffect } from "react";
+import BackButton from "../components/BackButton";
+import Spinner from "../components/spinner";
+import axios from "axios";
+import { useSnackbar } from "notistack";
+import FilterForm from "./FilterForm";
 
 const FilterData = () => {
   const [buses, setBuses] = useState([]);
@@ -14,11 +14,17 @@ const FilterData = () => {
   async function filterDataByDayAndTrip(day, tripType) {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/buses`);
+      const response = await axios.get(
+        `https://busschedulingapp-cuet-transitlink-3.onrender.com/buses`
+      );
       let responseData = response.data.data;
 
       // Check if the response is not empty
-      if (responseData && typeof responseData === 'object' && Object.keys(responseData).length > 0) {
+      if (
+        responseData &&
+        typeof responseData === "object" &&
+        Object.keys(responseData).length > 0
+      ) {
         const filteredData = Object.values(responseData).filter((bus) => {
           // Loop over trip1, trip2, trip3
           for (let i = 1; i <= 3; i++) {
@@ -37,8 +43,8 @@ const FilterData = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.error('Error filtering data:', error);
-      enqueueSnackbar('Error', { variant: 'error' });
+      console.error("Error filtering data:", error);
+      enqueueSnackbar("Error", { variant: "error" });
       setLoading(false);
     }
   }
@@ -46,8 +52,10 @@ const FilterData = () => {
   return (
     <div className="p-4">
       <BackButton />
-      <h1 className="text-3xl my-8y mx-auto font-bold text-center">Filtered Bus Information</h1>
-      <FilterForm onSubmit={filterDataByDayAndTrip} /> 
+      <h1 className="text-3xl my-8y mx-auto font-bold text-center">
+        Filtered Bus Information
+      </h1>
+      <FilterForm onSubmit={filterDataByDayAndTrip} />
       {loading ? (
         <Spinner />
       ) : (
@@ -55,15 +63,21 @@ const FilterData = () => {
           {buses.map((bus) => (
             <div key={bus._id} className="my-4">
               <div>
-                <span className="text-xl mr-4 text-gray-800 font-bold">Bus Name:</span>
+                <span className="text-xl mr-4 text-gray-800 font-bold">
+                  Bus Name:
+                </span>
                 <span>{bus?.busName}</span>
               </div>
               <div>
-                <span className="text-xl mr-4 text-gray-800 font-bold">Start Time:</span>
+                <span className="text-xl mr-4 text-gray-800 font-bold">
+                  Start Time:
+                </span>
                 <span>{bus?.tripSat1?.startTime}</span>
               </div>
               <div>
-                <span className="text-xl mr-4 text-gray-800 font-bold">End Time:</span>
+                <span className="text-xl mr-4 text-gray-800 font-bold">
+                  End Time:
+                </span>
                 <span>{bus?.tripSat1?.endTime}</span>
               </div>
             </div>

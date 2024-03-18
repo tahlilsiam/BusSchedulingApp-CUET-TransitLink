@@ -5,6 +5,7 @@ import BusCard from "./BusCard";
 
 const Schedule = () => {
   const [busData, setBusData] = useState([]);
+  const [filteredBusData, setFilteredBusData] = useState([]);
   const [selectedTripType, setSelectedTripType] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [days, setDays] = useState([
@@ -28,39 +29,47 @@ const Schedule = () => {
       );
       const data = await response.json();
       setBusData(data.data);
+      setFilteredBusData(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const renderBusCards = () => {
-    let filteredBusData = busData;
+  useEffect(() => {
+    applyFilters();
+  }, [selectedTripType, selectedDay]);
+
+  const applyFilters = () => {
+    let filteredData = busData;
 
     if (selectedTripType) {
-      filteredBusData = filteredBusData.filter((bus) => {
-        for (let key in bus) {
-          if (
-            key.startsWith("trip") &&
-            bus[key].tripType.toLowerCase() === selectedTripType
-          ) {
-            return true;
+      filteredData = filteredData.filter((bus) => {
+        return Object.keys(bus).some((key) => {
+          if (key.startsWith("trip")) {
+            const trip = bus[key];
+            return (
+              trip.tripType.toLowerCase() === selectedTripType.toLowerCase()
+            );
           }
-        }
-        return false;
+          return false;
+        });
       });
     }
 
     if (selectedDay) {
-      filteredBusData = filteredBusData.filter((bus) => {
-        return (
-          bus[`trip${selectedDay.toLowerCase()}1`].tripType.toLowerCase() !== ""
-        );
+      const selectedDayAbbreviation = selectedDay.substring(0, 3).toLowerCase();
+      filteredData = filteredData.filter((bus) => {
+        return Object.keys(bus).some((key) => {
+          if (key.startsWith(`trip${selectedDayAbbreviation}`)) {
+            const trip = bus[key];
+            return trip.tripType.toLowerCase() !== "";
+          }
+          return false;
+        });
       });
     }
 
-    return filteredBusData.map((bus, index) => (
-      <BusCard key={index} bus={bus} />
-    ));
+    setFilteredBusData(filteredData);
   };
 
   return (
@@ -70,18 +79,18 @@ const Schedule = () => {
       <Picker
         selectedValue={selectedTripType}
         style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => setSelectedTripType(itemValue)}
+        onValueChange={(itemValue) => setSelectedTripType(itemValue)}
       >
         <Picker.Item label="Select Trip Type" value={null} />
-        <Picker.Item label="Teacher" value="teacher" />
-        <Picker.Item label="Student" value="student" />
-        <Picker.Item label="Staff" value="staff" />
+        <Picker.Item label="Teacher" value="Teacher" />
+        <Picker.Item label="Student" value="Student" />
+        <Picker.Item label="Staff" value="Office Staff" />
       </Picker>
 
       <Picker
         selectedValue={selectedDay}
         style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => setSelectedDay(itemValue)}
+        onValueChange={(itemValue) => setSelectedDay(itemValue)}
       >
         <Picker.Item label="Select Day" value={null} />
         {days.map((day, index) => (
@@ -89,7 +98,9 @@ const Schedule = () => {
         ))}
       </Picker>
 
-      {renderBusCards()}
+      {filteredBusData.map((bus, index) => (
+        <BusCard key={index} bus={bus} />
+      ))}
     </ScrollView>
   );
 };
