@@ -18,7 +18,7 @@ const NoticeHome = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/notices")
+      .get("https://busschedulingapp-cuet-transitlink-3.onrender.com/notices")
       .then((response) => {
         setNotices(response.data.data);
         setLoading(false);

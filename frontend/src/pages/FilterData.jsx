@@ -38,7 +38,6 @@ const FilterData = () => {
         setBuses(filteredData);
         setLoading(false);
       } else {
-        // If the response is empty or not an object, set buses to an empty array
         setBuses([]);
         setLoading(false);
       }
