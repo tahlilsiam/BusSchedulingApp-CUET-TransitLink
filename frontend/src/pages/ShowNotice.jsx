@@ -18,7 +18,9 @@ const ShowNotice = () => {
   useEffect(() => {
     setLoading(false);
     axios
-      .get(`http://localhost:5000/notices/${id}`)
+      .get(
+        `https://busschedulingapp-cuet-transitlink-3.onrender.com/notices/${id}`
+      )
       .then((response) => {
         setNotice(response.data);
         console.log(response.data);
@@ -60,4 +62,3 @@ const ShowNotice = () => {
 };
 
 export default ShowNotice;
-

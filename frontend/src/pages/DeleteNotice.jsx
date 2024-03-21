@@ -14,7 +14,9 @@ const DeleteNotice = () => {
   const handleDeleteNotice = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5000/notices/${id}`)
+      .delete(
+        `https://busschedulingapp-cuet-transitlink-3.onrender.com/notices/${id}`
+      )
       .then((response) => {
         setLoading(false);
         enqueueSnackbar("Notice is deleted", { variant: "success" });
@@ -30,7 +32,7 @@ const DeleteNotice = () => {
 
   return (
     <div>
-      <BackButtonToNotice/>
+      <BackButtonToNotice />
       <h1 className="text-3xl my-4 text-center mx-auto font-bold">
         Delete Notice
       </h1>
@@ -38,7 +40,9 @@ const DeleteNotice = () => {
         <Spinner />
       ) : (
         <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
-          <h3 className="text-2xl">Are you sure you want to delete the Notice?</h3>
+          <h3 className="text-2xl">
+            Are you sure you want to delete the Notice?
+          </h3>
           <button
             className="p-4 bg-red-500 text-white m-8 w-full"
             onClick={handleDeleteNotice}
